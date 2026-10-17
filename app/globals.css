@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/*
+  Palette: survey-office stone and ink, a land-record green for actions,
+  and rubber-stamp violet reserved only for verification / trust marks.
+*/
+:root {
+  --paper: #f2f3ef;
+  --panel: #ffffff;
+  --ink: #17201c;
+  --granite: #5b6560;
+  --line: #d7dbd4;
+  --survey: #1d5a47;
+  --survey-soft: #e1ece6;
+  --stamp: #4b2e9a;
+  --stamp-soft: #ebe6f6;
+  --amber: #9a620e;
+  --amber-soft: #f6ecd9;
+  --red: #a33a2e;
+  --red-soft: #f6e2df;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121815;
+    --panel: #1a221e;
+    --ink: #e7ebe6;
+    --granite: #9aa59f;
+    --line: #2e3833;
+    --survey: #6cc2a1;
+    --survey-soft: #1d3329;
+    --stamp: #b7a3f2;
+    --stamp-soft: #2a2343;
+    --amber: #e3ad55;
+    --amber-soft: #3a2e17;
+    --red: #ec8a7d;
+    --red-soft: #3d201c;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-granite: var(--granite);
+  --color-line: var(--line);
+  --color-survey: var(--survey);
+  --color-survey-soft: var(--survey-soft);
+  --color-stamp: var(--stamp);
+  --color-stamp-soft: var(--stamp-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-stretch: 88%;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+:focus-visible {
+  outline: 2px solid var(--survey);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The one orchestrated motion: the stamp lands when a partner verifies the ledger. */
+@keyframes stamp-land {
+  0% { transform: scale(1.6) rotate(-24deg); opacity: 0; }
+  60% { transform: scale(0.94) rotate(-9deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-11deg); opacity: 1; }
+}
+.stamp-land {
+  animation: stamp-land 420ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stamp-land { animation: none; transform: rotate(-11deg); }
+}
